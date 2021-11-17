@@ -1,1 +1,13 @@
-/bin/
+/.metadata/
+.classpath
+.idea/libraries/jade.xml
+.idea/misc.xml
+.idea/modules.xml
+.idea/runConfigurations.xml
+.idea/vcs.xml
+.project
+APDescription.txt
+MTPs-Main-Container.txt
+MultiAgentes Suarez Benavidez.iml
+src/.classpath
+src/.project
