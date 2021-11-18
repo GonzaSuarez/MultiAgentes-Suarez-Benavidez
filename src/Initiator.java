@@ -2,7 +2,8 @@ import jade.core.Agent;
 import jade.wrapper.AgentContainer;
 import jade.wrapper.AgentController;
 
-public class MiAgente extends Agent {
+public class Initiator extends Agent {
+	private String[] menu= {"milanesa", "pollo", "fideos"}; 
 
     protected void setup(){
         this.addBehaviour(new MiFSM());
