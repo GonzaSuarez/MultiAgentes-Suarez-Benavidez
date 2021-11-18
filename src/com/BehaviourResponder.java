@@ -24,11 +24,13 @@ public class BehaviourResponder extends Behaviour {
 			if (Math.random()<0.5) {
 			resp.setPerformative(ACLMessage.ACCEPT_PROPOSAL);
 			resp.setContent("Me gusta la comida");		
+			System.out.println("me gusto");
 			}
 			else
 			{
 				resp.setPerformative(ACLMessage.REFUSE);
 				resp.setContent("No me gusta la comida");
+				System.out.println("no me gusto");
 			}
 			myAgent.send(resp);
 			

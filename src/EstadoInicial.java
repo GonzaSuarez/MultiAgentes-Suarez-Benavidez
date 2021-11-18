@@ -5,7 +5,6 @@ import jade.lang.acl.ACLMessage;
 
 public class EstadoInicial extends Behaviour {
 
-	private int event = -1;
 	private boolean termino = false;
 	private String[] menu= {"milanesa", "pollo", "fideos"}; 
 
@@ -22,7 +21,8 @@ public class EstadoInicial extends Behaviour {
 			msg.setOntology("Weather-forecast-ontology");
 			msg.setContent("Queres comer "+ menu[aux]);
 			myAgent.send(msg);
-			
+			termino=true;
+			System.out.println("entro principal");
 
 		}
 		
@@ -45,10 +45,6 @@ public class EstadoInicial extends Behaviour {
 		return termino;
 	}
 	
-	@Override
-	public int onEnd() {
-		return this.event;
-	}
 	
 	@Override
 	public void reset() {

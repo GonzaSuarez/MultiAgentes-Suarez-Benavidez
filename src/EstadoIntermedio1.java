@@ -3,18 +3,16 @@ import jade.lang.acl.ACLMessage;
 import jade.lang.acl.MessageTemplate;
 
 public class EstadoIntermedio1 extends Behaviour {
-	private int event=-1;
+	private int event=1;
 	private boolean termino=false;
 	@Override
 	public void action() {
 	if(!termino) {	
-		ACLMessage msg = myAgent.receive(MessageTemplate.MatchPerformative(ACLMessage.REFUSE));
-		if (msg != null) {
-			event=1;
-		}
-		msg = myAgent.receive(MessageTemplate.MatchPerformative(ACLMessage.ACCEPT_PROPOSAL));
+		ACLMessage msg = myAgent.receive(MessageTemplate.MatchPerformative(ACLMessage.ACCEPT_PROPOSAL));
+		System.out.println("entro intermedio");
 		if(msg !=null) {
 			event=2;
+			termino= true;
 		}
 		else
 			block();
@@ -23,7 +21,7 @@ public class EstadoIntermedio1 extends Behaviour {
 
 	@Override
 	public boolean done() {
-		return true;
+		return false;
 	}
 
 	@Override
