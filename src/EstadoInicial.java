@@ -1,6 +1,7 @@
 import jade.core.AID;
 import jade.core.behaviours.Behaviour;
 import jade.lang.acl.ACLMessage;
+import jade.lang.acl.MessageTemplate;
 
 
 public class EstadoInicial extends Behaviour {
@@ -21,7 +22,7 @@ public class EstadoInicial extends Behaviour {
 			msg.setOntology("Weather-forecast-ontology");
 			msg.setContent("Queres comer "+ menu[aux]);
 			myAgent.send(msg);
-			termino=true;
+			msg= myAgent.receive(MessageTemplate.MatchPerformative(ACLMessage.REQUEST));
 			System.out.println("entro principal");
 
 		}

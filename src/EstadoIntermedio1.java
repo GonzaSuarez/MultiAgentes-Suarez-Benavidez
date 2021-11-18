@@ -3,7 +3,7 @@ import jade.lang.acl.ACLMessage;
 import jade.lang.acl.MessageTemplate;
 
 public class EstadoIntermedio1 extends Behaviour {
-	private int event=1;
+	private int event=-1;
 	private boolean termino=false;
 	@Override
 	public void action() {
@@ -15,13 +15,14 @@ public class EstadoIntermedio1 extends Behaviour {
 			termino= true;
 		}
 		else
-			block();
+			event=1;
+
 		}
 	}
 
 	@Override
 	public boolean done() {
-		return false;
+		return termino;
 	}
 
 	@Override
