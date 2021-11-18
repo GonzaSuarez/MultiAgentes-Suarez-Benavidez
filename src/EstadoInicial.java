@@ -1,24 +1,42 @@
+import jade.core.AID;
 import jade.core.behaviours.Behaviour;
+import jade.lang.acl.ACLMessage;
+
 
 public class EstadoInicial extends Behaviour {
 
 	private int event = -1;
 	private boolean termino = false;
+	private String[] menu= {"milanesa", "pollo", "fideos"}; 
+
 	
 	@Override
 	public void action() {
 		
-		this.getDataStore().put("key", "Hola");
+		if (!termino) {
 		
-		double valor = Math.random();
-		System.out.println("En Estado Inicial " + valor);
+			ACLMessage msg = new ACLMessage(ACLMessage.REQUEST);
+			int aux= (int) (Math.random()*menu.length);
+			msg.addReceiver(new AID("cocina", AID.ISLOCALNAME));
+			msg.setLanguage("Spanish");
+			msg.setOntology("Weather-forecast-ontology");
+			msg.setContent("Queres comer "+ menu[aux]);
+			myAgent.send(msg);
+			
+
+		}
 		
-		if(valor > 0.3)
-			if(valor < 0.4)
-				event = 1;
-			else 
-				event = 2;
-			termino = true;
+//		this.getDataStore().put("key", "Hola");
+//		
+//		double valor = Math.random();
+//		System.out.println("En Estado Inicial " + valor);
+//		
+//		if(valor > 0.3)
+//			if(valor < 0.4)
+//				event = 1;
+//			else 
+//				event = 2;
+//			termino = true;
 	}
 
 	@Override

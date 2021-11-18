@@ -20,12 +20,18 @@ public class BehaviourResponder extends Behaviour {
 			//ACLMessage resp = new ACLMessage(ACLMessage.INFORM);
 //			resp.addReceiver(msg.getSender());
 //			resp.setContent("Recibido");
-			
 			ACLMessage resp = msg.createReply();
-			resp.setPerformative(ACLMessage.INFORM);
-			resp.setContent("Recibido");
-			
+			if (Math.random()<0.5) {
+			resp.setPerformative(ACLMessage.ACCEPT_PROPOSAL);
+			resp.setContent("Me gusta la comida");		
+			}
+			else
+			{
+				resp.setPerformative(ACLMessage.REFUSE);
+				resp.setContent("No me gusta la comida");
+			}
 			myAgent.send(resp);
+			
 		}
 		else
 			block();
