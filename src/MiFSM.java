@@ -5,22 +5,22 @@ public class MiFSM extends FSMBehaviour{
 	
 	 public MiFSM() {
 		DataStore ds = new DataStore();
-		EstadoInicial eini = new EstadoInicial();
-		eini.setDataStore(ds);
-		EstadoIntermedio1 eint1 = new EstadoIntermedio1();
-		eint1.setDataStore(ds);
-		EstadoFinal efin = new EstadoFinal();
-		efin.setDataStore(ds);
+		EstadoInicial enviar_propuesta = new EstadoInicial();
+		enviar_propuesta.setDataStore(ds);
+		EstadoIntermedio1 esperar_respuesta = new EstadoIntermedio1();
+		esperar_respuesta.setDataStore(ds);
+		EstadoFinal estado_final = new EstadoFinal();
+		estado_final.setDataStore(ds);
 		
-		this.registerFirstState(eini, "ini");
-		this.registerState(eint1, "int1");
-		this.registerLastState(efin, "fin");
+		this.registerFirstState(enviar_propuesta, "inicial");
+		this.registerState(esperar_respuesta, "esperar_respuesta");
+		this.registerLastState(estado_final, "final");
 		
-		String[] toReset = {"ini"};
-		this.registerTransition("int1", "fin", 2, toReset);
-		this.registerTransition("ini1", "ini", 1, toReset);
+		String[] toReset = {"inicial"};
+		this.registerTransition("esperar_respuesta", "inicial", 1, toReset);
+		this.registerTransition("esperar_respuesta", "final", 2, toReset);
 		
-		this.registerDefaultTransition("ini", "int1");
+		this.registerDefaultTransition("inicial", "esperar_respuesta");
 
 		
 	}

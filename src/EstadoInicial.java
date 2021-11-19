@@ -13,6 +13,7 @@ public class EstadoInicial extends Behaviour {
 	@Override
 	public void action() {
 		
+		System.out.println("estado inicial termino = "  + termino);
 		if (!termino) {
 		
 			ACLMessage msg = new ACLMessage(ACLMessage.REQUEST);
@@ -23,26 +24,15 @@ public class EstadoInicial extends Behaviour {
 			msg.setContent("Queres comer "+ menu[aux]);
 			myAgent.send(msg);
 			msg= myAgent.receive(MessageTemplate.MatchPerformative(ACLMessage.REQUEST));
-			System.out.println("entro principal");
+			System.out.println("Quiero comer " + menu[aux]);
+			termino = true;
 
 		}
 		
-//		this.getDataStore().put("key", "Hola");
-//		
-//		double valor = Math.random();
-//		System.out.println("En Estado Inicial " + valor);
-//		
-//		if(valor > 0.3)
-//			if(valor < 0.4)
-//				event = 1;
-//			else 
-//				event = 2;
-//			termino = true;
 	}
 
 	@Override
 	public boolean done() {
-		// TODO Auto-generated method stub
 		return termino;
 	}
 	

@@ -7,6 +7,7 @@ import jade.lang.acl.MessageTemplate;
 public class BehaviourResponder extends Behaviour {
 
 //	private boolean loRecibi = false;
+	private boolean termino = false;
 	
 	@Override
 	public void action() {
@@ -22,17 +23,18 @@ public class BehaviourResponder extends Behaviour {
 //			resp.setContent("Recibido");
 			ACLMessage resp = msg.createReply();
 			if (Math.random()<0.5) {
-			resp.setPerformative(ACLMessage.ACCEPT_PROPOSAL);
-			resp.setContent("Me gusta la comida");		
-			System.out.println("me gusto");
+				resp.setPerformative(ACLMessage.ACCEPT_PROPOSAL);
+				resp.setContent("Me gusta la comida");		
+				System.out.println("me gusto");
 			}
 			else
 			{
-				resp.setPerformative(ACLMessage.REFUSE);
+				resp.setPerformative(ACLMessage.REJECT_PROPOSAL);
 				resp.setContent("No me gusta la comida");
 				System.out.println("no me gusto");
 			}
 			myAgent.send(resp);
+			termino = true;
 			
 		}
 		else
@@ -42,8 +44,7 @@ public class BehaviourResponder extends Behaviour {
 
 	@Override
 	public boolean done() {
-		// TODO Auto-generated method stub
-		return false;
+		return termino;
 	}
 
 }

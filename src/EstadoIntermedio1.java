@@ -7,16 +7,28 @@ public class EstadoIntermedio1 extends Behaviour {
 	private boolean termino=false;
 	@Override
 	public void action() {
-	if(!termino) {	
-		ACLMessage msg = myAgent.receive(MessageTemplate.MatchPerformative(ACLMessage.ACCEPT_PROPOSAL));
-		System.out.println("entro intermedio");
-		if(msg !=null) {
-			event=2;
-			termino= true;
-		}
-		else
-			event=1;
-
+		System.out.println("estado intermedio termino = "  + termino);
+		if(!termino) {	
+			ACLMessage msg = myAgent.receive(MessageTemplate.MatchPerformative(ACLMessage.ACCEPT_PROPOSAL));
+			
+			if(msg !=null) {
+				System.out.println(msg);
+				System.out.println("request aceptada");
+				event=2;
+				termino= true;
+			}
+			else
+				block();
+			msg = myAgent.receive(MessageTemplate.MatchPerformative(ACLMessage.REJECT_PROPOSAL));
+			
+			if(msg != null) {
+				System.out.println(msg);
+				System.out.println("request rechazada");
+				event = 1;
+				termino = true;
+			}
+			else 
+				block();
 		}
 	}
 
