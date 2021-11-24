@@ -12,8 +12,6 @@ public class EstadoInicial extends Behaviour {
 	
 	@Override
 	public void action() {
-		
-		System.out.println("estado inicial termino = "  + termino);
 		if (!termino) {
 		
 			ACLMessage msg = new ACLMessage(ACLMessage.REQUEST);

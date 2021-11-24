@@ -16,7 +16,7 @@ public class MiFSM extends FSMBehaviour{
 		this.registerState(esperar_respuesta, "esperar_respuesta");
 		this.registerLastState(estado_final, "final");
 		
-		String[] toReset = {"inicial"};
+		String[] toReset = {"inicial","esperar_respuesta"};
 		this.registerTransition("esperar_respuesta", "inicial", 1, toReset);
 		this.registerTransition("esperar_respuesta", "final", 2, toReset);
 		

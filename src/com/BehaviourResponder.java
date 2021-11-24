@@ -16,13 +16,8 @@ public class BehaviourResponder extends Behaviour {
 		if(msg != null) {
 			System.out.println("Mensaje Recibido "+ msg.getContent());
 			
-//			loRecibi = true;
-			
-			//ACLMessage resp = new ACLMessage(ACLMessage.INFORM);
-//			resp.addReceiver(msg.getSender());
-//			resp.setContent("Recibido");
 			ACLMessage resp = msg.createReply();
-			if (Math.random()<0.5) {
+			if (Math.random()<0.1) {
 				resp.setPerformative(ACLMessage.ACCEPT_PROPOSAL);
 				resp.setContent("Me gusta la comida");		
 				System.out.println("me gusto");
@@ -34,7 +29,7 @@ public class BehaviourResponder extends Behaviour {
 				System.out.println("no me gusto");
 			}
 			myAgent.send(resp);
-			termino = true;
+			
 			
 		}
 		else
@@ -44,7 +39,7 @@ public class BehaviourResponder extends Behaviour {
 
 	@Override
 	public boolean done() {
-		return termino;
+		return false;
 	}
 
 }
